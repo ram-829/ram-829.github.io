@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -845,6 +844,21 @@
         setTimeout(createSingleFirework, i * 180);
       }
     }
+ <!-- 🎵 MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2022/03/10/02-09-09-200_200x200.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn" style="position:fixed;right:20px;bottom:20px;width:55px;height:55px;border-radius:50%;background:linear-gradient(45deg,pink,purple);color:white;border:none;font-size:22px;cursor:pointer;z-index:999;box-shadow:0 5px 15px rgba(0,0,0,0.3);">🎵</button>
+
+<script>
+const music = document.getElementById('bgMusic');
+const btn = document.getElementById('musicBtn');
+let play = false;
+btn.onclick = () => {
+  if(!play){ music.play(); play=true; btn.innerHTML='🔊'; }
+  else{ music.pause(); play=false; btn.innerHTML='🎵'; }
+}
+</script>
   </script>
 </body>
 </html>
