@@ -857,8 +857,7 @@ let play = false;
 btn.onclick = () => {
   if(!play){ music.play(); play=true; btn.innerHTML='🔊'; }
   else{ music.pause(); play=false; btn.innerHTML='🎵'; }
-}
-</script>
+  </script>
   </script>
 </body>
 </html>
