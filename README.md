@@ -1,635 +1,849 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>For Saumya 💗</title>
+  <title>Happy New Year, Saumya ♡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet" />
-
   <style>
+    :root {
+      --bg1: #0b1024;
+      --bg2: #26163f;
+      --bg3: #43235f;
+      --soft-pink: #ffb6d5;
+      --soft-purple: #c6a4ff;
+      --soft-blue: #96c5ff;
+      --card-bg: rgba(15, 12, 35, 0.82);
+      --accent: #ffd6f6;
+      --text-main: #fdf7ff;
+      --text-soft: #f3e3ff;
+      --glass: rgba(255, 255, 255, 0.06);
+      --border-soft: rgba(255, 255, 255, 0.18);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --pink-light: #ffe6f4;
-      --pink-main: #ff8ac2;
-      --pink-deep: #ff4b8b;
-      --bg-dark: #170718;
-      --text-main: #351227;
-      --glass: rgba(255, 255, 255, 0.14);
-    }
-
     body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       min-height: 100vh;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle at top, #ffd9f2 0%, #ffb7dd 35%, #ff9ac2 55%, #f2629b 80%, #2a042f 100%);
       color: var(--text-main);
+      background: radial-gradient(circle at top, #283b84 0, transparent 55%),
+        radial-gradient(circle at 20% 80%, #522658 0, transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg3));
+      overflow-x: hidden;
+    }
+
+    /* soft moving background stars / hearts */
+    .floating-particles {
+      position: fixed;
+      inset: 0;
       overflow: hidden;
-      position: relative;
-    }
-
-    /* Gradient blobs / glassy anime vibe */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(18px);
-      opacity: 0.9;
-      mix-blend-mode: screen;
-      animation: blobFloat 18s ease-in-out infinite alternate;
-    }
-
-    .blob.b1 {
-      width: 360px;
-      height: 360px;
-      background: radial-gradient(circle at 30% 30%, #ff9bcf, #f24692);
-      top: -80px;
-      left: -40px;
-    }
-
-    .blob.b2 {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle at 30% 30%, #ffc7eb, #ff8ac2);
-      bottom: -120px;
-      right: -40px;
-      animation-delay: 1.4s;
-    }
-
-    .blob.b3 {
-      width: 260px;
-      height: 260px;
-      background: radial-gradient(circle at 30% 30%, #ffeaf7, #ff9ad2);
-      top: 50%;
-      left: 65%;
-      transform: translate(-50%, -50%);
-      animation-delay: 2.6s;
-    }
-
-    @keyframes blobFloat {
-      0% { transform: translate3d(0, 0, 0) scale(1); }
-      50% { transform: translate3d(20px, -25px, 0) scale(1.05); }
-      100% { transform: translate3d(-10px, 15px, 0) scale(1.02); }
-    }
-
-    /* Floating hearts */
-    .floating-heart {
-      position: absolute;
-      font-size: 18px;
-      animation: heartFloat 8s ease-in-out infinite;
-      opacity: 0.8;
       pointer-events: none;
+      z-index: 0;
     }
 
-    .floating-heart:nth-child(1) { top: 14%; left: 15%; animation-delay: 0s; }
-    .floating-heart:nth-child(2) { top: 20%; right: 18%; animation-delay: 1.2s; }
-    .floating-heart:nth-child(3) { bottom: 12%; left: 12%; animation-delay: 2.4s; }
-    .floating-heart:nth-child(4) { bottom: 22%; right: 22%; animation-delay: 3.6s; }
-    .floating-heart:nth-child(5) { top: 50%; left: 6%; animation-delay: 4.4s; }
-
-    @keyframes heartFloat {
-      0% { transform: translateY(0); opacity: 0.25; }
-      40% { transform: translateY(-18px); opacity: 0.85; }
-      80% { transform: translateY(-32px); opacity: 0.4; }
-      100% { transform: translateY(0); opacity: 0.25; }
+    .particle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #ffd6f6 0, transparent 70%);
+      opacity: 0.7;
+      border-radius: 50%;
+      animation: floatUp 18s linear infinite;
+      filter: blur(0.5px);
     }
 
-    /* Main layout */
-    .shell {
-      position: relative;
-      width: 100%;
-      max-width: 960px;
-      padding: 22px;
+    .particle.heart {
+      width: 14px;
+      height: 14px;
+      background: none;
+      position: absolute;
     }
 
-    .card {
-      position: relative;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.14);
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(22px);
-      box-shadow:
-        0 18px 40px rgba(88, 5, 52, 0.45),
-        0 0 0 1px rgba(255, 255, 255, 0.35) inset;
-      padding: 26px 26px 22px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 18px;
-      overflow: hidden;
+    .particle.heart::before,
+    .particle.heart::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 12px;
+      background: radial-gradient(circle at 30% 30%, #ffd6f6 0, #ff9fd0 45%, transparent 70%);
+      border-radius: 8px 8px 0 0;
     }
 
-    @media (max-width: 780px) {
-      .card {
-        grid-template-columns: minmax(0, 1fr);
-        padding: 20px 16px 18px;
+    .particle.heart::before {
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+      left: 4px;
+    }
+
+    .particle.heart::after {
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+      left: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(12px);
+        opacity: 0;
       }
     }
 
-    /* Left side — title + main note + buttons */
-    .left-col {
+    /* subtle moving road / horizon */
+    .midnight-road {
+      position: fixed;
+      inset: auto 0 0 0;
+      height: 40vh;
+      background: linear-gradient(to top, rgba(2, 3, 10, 0.95), transparent),
+        repeating-linear-gradient(
+          -8deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.04) 2px,
+          transparent 2px,
+          transparent 12px
+        );
+      mask-image: linear-gradient(to top, black 0, transparent 70%);
+      z-index: 0;
+    }
+
+    .road-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.6),
+        rgba(255, 255, 255, 0)
+      );
+      opacity: 0.6;
+      filter: blur(0.5px);
+    }
+
+    .fairy-lights {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 120%;
+      transform: translateX(-10%);
+      height: 120px;
+      background-image: radial-gradient(circle, #ffd6f6 0, transparent 60%),
+        radial-gradient(circle, #c6a4ff 0, transparent 60%),
+        radial-gradient(circle, #96c5ff 0, transparent 60%);
+      background-size: 40px 40px;
+      background-position: 0 40px, 20px 70px, 40px 50px;
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      filter: blur(1px);
+      animation: lightsWaves 16s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes lightsWaves {
+      0%,
+      100% {
+        transform: translateX(-10%) translateY(0);
+      }
+      50% {
+        transform: translateX(-6%) translateY(4px);
+      }
+    }
+
+    .overlay-gradient {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(255, 182, 213, 0.16), transparent 60%),
+        radial-gradient(circle at 90% 20%, rgba(150, 197, 255, 0.16), transparent 60%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 26px 18px 40px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 26px;
     }
 
-    .tagline {
-      font-size: 10px;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      display: inline-flex;
+    @media (min-width: 768px) {
+      main {
+        padding: 46px 28px 64px;
+        gap: 32px;
+      }
+    }
+
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px 22px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .glass-card {
+        padding: 26px 24px 32px;
+      }
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(255, 182, 213, 0.18), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(198, 164, 255, 0.2), transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .glass-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .title-line {
+      display: flex;
       align-items: center;
       gap: 8px;
-      color: #ffecf7;
-      opacity: 0.9;
+      margin-bottom: 8px;
     }
 
-    .tag-dot {
-      width: 9px;
-      height: 9px;
+    .title-main {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+    }
+
+    .title-chip {
+      font-size: 0.8rem;
+      padding: 3px 9px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #fff, #ff4b8b);
-      box-shadow: 0 0 10px rgba(255, 185, 220, 0.9);
+      background: rgba(10, 8, 28, 0.78);
+      border: 1px solid rgba(255, 214, 246, 0.42);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .main-title {
-      font-family: "Sacramento", cursive;
-      font-size: 40px;
-      letter-spacing: 0.8px;
-      color: #fff5fb;
-      text-shadow: 0 6px 14px rgba(82, 3, 46, 0.7);
-      margin-top: 2px;
+    .title-chip span {
+      font-size: 0.75rem;
+      opacity: 0.9;
     }
 
     .subtitle {
-      font-size: 13px;
-      color: #fce5f5;
-      opacity: 0.93;
-      max-width: 360px;
-    }
-
-    .pill-info {
-      margin-top: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
-      color: #fff;
-    }
-
-    .pill-info span.icon {
-      font-size: 13px;
-    }
-
-    .main-note {
-      margin-top: 12px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(255, 240, 252, 0.9), rgba(255, 220, 244, 0.96));
-      border: 1px dashed rgba(255, 150, 210, 0.8);
-      font-size: 13px;
-      line-height: 1.6;
-      color: #491131;
-    }
-
-    .main-note .name {
-      color: #ff2e7b;
-      font-weight: 600;
-    }
-
-    .buttons-wrap {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      max-width: 420px;
-    }
-
-    .love-btn {
-      position: relative;
-      border: none;
-      border-radius: 14px;
-      padding: 9px 6px;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      color: #fff;
-      background: radial-gradient(circle at 0 0, #ffe3ff 0, #ff8ac2 28%, #f13f82 90%);
-      box-shadow:
-        0 6px 18px rgba(255, 30, 131, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.14) inset;
-      transform: translateY(0);
-      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
-    }
-
-    .love-btn span.icon {
-      font-size: 15px;
-    }
-
-    .love-btn.small {
-      font-size: 10px;
-      padding: 7px 4px;
-    }
-
-    .love-btn.sorry {
-      background: radial-gradient(circle at 0 0, #ffe8d8 0, #ffac7a 28%, #f1665c 90%);
-      box-shadow:
-        0 6px 18px rgba(240, 90, 70, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.16) inset;
-    }
-
-    .love-btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.05);
-      box-shadow:
-        0 10px 22px rgba(255, 30, 131, 0.55),
-        0 0 0 1px rgba(255, 255, 255, 0.22) inset;
-    }
-
-    .love-btn:active {
-      transform: translateY(1px) scale(0.97);
-      filter: brightness(0.97);
-      box-shadow:
-        0 3px 10px rgba(255, 30, 131, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.18) inset;
-    }
-
-    /* Right side — letter box */
-    .right-col {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .note-card {
-      position: relative;
-      flex: 1;
-      border-radius: 20px;
-      background: rgba(255, 249, 254, 0.94);
-      border: 1px solid rgba(255, 163, 210, 0.9);
-      padding: 16px 16px 14px;
-      overflow: hidden;
-      box-shadow:
-        0 14px 26px rgba(129, 17, 76, 0.38),
-        0 0 0 1px rgba(255, 255, 255, 0.65) inset;
-    }
-
-    .note-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      opacity: 0.88;
       margin-bottom: 6px;
     }
 
-    .note-chip {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 188, 223, 0.7);
-      color: #721a45;
+    .subtitle strong {
+      font-weight: 600;
     }
 
-    .note-meta {
-      font-size: 10px;
-      color: #a64f7f;
-      opacity: 0.9;
+    .main-message {
+      margin-top: 16px;
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: var(--text-soft);
+      position: relative;
     }
 
-    .note-body {
-      margin-top: 6px;
-      min-height: 110px;
-      font-size: 13px;
-      line-height: 1.7;
-      color: #421129;
-      white-space: pre-line;
+    @media (min-width: 768px) {
+      .title-main {
+        font-size: 1.9rem;
+      }
+      .subtitle {
+        font-size: 1rem;
+      }
+      .main-message {
+        font-size: 1.02rem;
+      }
+    }
+
+    .message-line {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .message-line:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .message-line:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    .message-line:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+    .message-line:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .typing-cursor {
       display: inline-block;
-      width: 2px;
-      height: 14px;
-      margin-left: 1px;
-      background: #ff4b8b;
-      vertical-align: middle;
-      animation: blink 0.9s infinite;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.78);
+      margin-left: 3px;
+      animation: cursorBlink 1.1s steps(1) infinite;
+      vertical-align: baseline;
     }
 
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+    @keyframes cursorBlink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+      50.01%,
+      100% {
+        opacity: 0;
+      }
     }
 
-    .note-footer {
-      margin-top: 8px;
+    /* Love notes */
+    .notes-section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .notes-hint {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      opacity: 0.82;
+      margin-bottom: 14px;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (min-width: 640px) {
+      .notes-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .notes-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .note-btn {
+      position: relative;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 8px 12px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 0 0, rgba(255, 182, 213, 0.22), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(150, 197, 255, 0.26), transparent 60%),
+        rgba(14, 8, 40, 0.92);
+      border: 1px solid rgba(255, 214, 246, 0.38);
+      color: var(--text-main);
+      font-size: 0.8rem;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      font-size: 10px;
-      color: #a14a7a;
+      gap: 6px;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+        border-color 0.15s ease-out, background 0.18s ease-out;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-    .note-footer .label {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(255, 210, 236, 0.9);
+    .note-btn span.emoji {
+      font-size: 1.1rem;
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
     }
 
-    .note-footer .tiny {
-      opacity: 0.9;
+    .note-btn span.label {
+      opacity: 0.95;
     }
 
-    .corner-heart {
+    .note-btn span.index {
+      font-size: 0.7rem;
+      opacity: 0.7;
+      letter-spacing: 0.04em;
+    }
+
+    .note-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.78);
+      border-color: rgba(255, 255, 255, 0.75);
+    }
+
+    .note-btn:active {
+      transform: translateY(0) scale(0.99);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.75);
+    }
+
+    .note-btn.active {
+      border-color: #ffffff;
+      background: radial-gradient(circle at 10% 0, rgba(255, 214, 246, 0.46), transparent 60%),
+        radial-gradient(circle at 100% 80%, rgba(150, 197, 255, 0.42), transparent 60%),
+        rgba(14, 8, 40, 0.96);
+    }
+
+    .note-display {
+      position: relative;
+      margin-top: 2px;
+      padding: 14px 12px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 214, 246, 0.45);
+      background: radial-gradient(circle at 0 0, rgba(255, 182, 213, 0.1), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(150, 197, 255, 0.12), transparent 60%),
+        rgba(5, 3, 16, 0.92);
+      min-height: 115px;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .note-display {
+        padding: 18px 16px 20px;
+        min-height: 130px;
+      }
+    }
+
+    .note-display-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 255, 0.78);
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+
+    .note-display-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-soft);
+      white-space: pre-wrap;
+      position: relative;
+    }
+
+    .note-placeholder {
+      opacity: 0.7;
+      font-size: 0.87rem;
+    }
+
+    /* fireworks */
+    .fireworks-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: visible;
+    }
+
+    .firework {
       position: absolute;
-      right: 12px;
-      bottom: 10px;
-      font-size: 18px;
-      opacity: 0.4;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      opacity: 0;
+      background: radial-gradient(circle, #ffd6f6 0, transparent 70%);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+      animation: boom 1.6s ease-out forwards;
     }
 
-    /* Bottom tiny text */
-    .bottom-note {
+    .firework::before,
+    .firework::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .firework::before {
+      transform: scale(1.6);
+      opacity: 0.7;
+    }
+
+    .firework::after {
+      transform: scale(2.1);
+      opacity: 0.45;
+    }
+
+    @keyframes boom {
+      0% {
+        transform: scale(0.2);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: scale(1.9);
+        opacity: 0;
+      }
+    }
+
+    .firework.trail {
+      width: 2px;
+      height: 16px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0)
+      );
+      animation: trailUp 0.9s ease-out forwards;
+      box-shadow: none;
+    }
+
+    @keyframes trailUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      30% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-18px);
+        opacity: 0;
+      }
+    }
+
+    /* small footer text */
+    .footer-text {
       margin-top: 6px;
-      font-size: 10px;
-      color: #f6e0f1;
-      opacity: 0.85;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      font-size: 0.78rem;
+      color: rgba(247, 238, 255, 0.75);
+      text-align: right;
+      opacity: 0.8;
     }
 
-    .bottom-note span.highlight {
-      color: #ffe9ff;
+    .footer-text span {
+      color: var(--soft-pink);
     }
   </style>
 </head>
 <body>
-  <!-- background blobs -->
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-
-  <!-- floating hearts -->
-  <div class="floating-heart">💗</div>
-  <div class="floating-heart">💖</div>
-  <div class="floating-heart">💕</div>
-  <div class="floating-heart">💘</div>
-  <div class="floating-heart">💞</div>
-
-  <div class="shell">
-    <div class="card">
-      <!-- LEFT -->
-      <div class="left-col">
-        <div>
-          <div class="tagline">
-            <span class="tag-dot"></span>
-            PRIVATE LITTLE UNIVERSE
-          </div>
-          <h1 class="main-title">For Saumya, with every heartbeat.</h1>
-          <p class="subtitle">
-            Har line, har button, har letter sirf itna hi prove karne ke liye hai:
-            tum sirf special nahi ho, tum meri poori duniya ho.
-          </p>
-          <div class="pill-info">
-            <span class="icon">🩷</span>
-            <span>Tap any button &amp; read what my heart really feels.</span>
-          </div>
-        </div>
-
-        <div class="main-note">
-          Dear <span class="name">Saumya</span>,  
-          kabhi kabhi shayad main words me perfect na ho paun,  
-          isliye socha ek chhota sa digital space banaun,
-          jahan tum jab bhi aao, tumhe wahi feel mile:
-          ki koi hai jo tumhe loudly nahi, lekin *pure dil se* love karta hai – every single day.
-        </div>
-
-        <div class="buttons-wrap">
-          <button class="love-btn" data-index="0">
-            <span class="icon">❤️</span>
-            LOVE 1
-          </button>
-          <button class="love-btn" data-index="1">
-            <span class="icon">💘</span>
-            LOVE 2
-          </button>
-          <button class="love-btn" data-index="2">
-            <span class="icon">💖</span>
-            LOVE 3
-          </button>
-          <button class="love-btn small" data-index="3">
-            <span class="icon">💞</span>
-            LOVE 4
-          </button>
-          <button class="love-btn small" data-index="4">
-            <span class="icon">💕</span>
-            LOVE 5
-          </button>
-          <button class="love-btn sorry small" data-index="5">
-            <span class="icon">🥺</span>
-            SORRY
-          </button>
-        </div>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="right-col">
-        <div class="note-card">
-          <div class="note-header">
-            <div class="note-chip" id="noteLabel">Love letter 1 · just for you</div>
-            <div class="note-meta" id="noteMeta">tap different buttons to open new letters</div>
-          </div>
-
-          <div class="note-body" id="typingText"></div>
-          <span class="typing-cursor" id="cursor"></span>
-
-          <div class="note-footer">
-            <div class="label">
-              <span>From me</span> · <span style="font-weight: 500;">to only you</span>
-            </div>
-            <div class="tiny">read slowly, feel deeply 🕊️</div>
-          </div>
-
-          <div class="corner-heart">⌣ ❤️</div>
-        </div>
-
-        <div class="bottom-note">
-          <span>Built once, but meant to be read again and again.</span>
-          <span class="highlight">Promise: it’s always you. ♾️</span>
-        </div>
-      </div>
-    </div>
+  <!-- dreamy moving background -->
+  <div class="floating-particles" id="particles"></div>
+  <div class="midnight-road">
+    <div class="road-line"></div>
   </div>
+  <div class="fairy-lights"></div>
+  <div class="overlay-gradient"></div>
+  <div class="fireworks-layer" id="fireworks"></div>
+
+  <main>
+    <!-- MAIN NEW YEAR WISH -->
+    <section class="glass-card">
+      <div class="glass-inner">
+        <div class="title-line">
+          <h1 class="title-main">Happy New Year, Saumya 🤍</h1>
+          <div class="title-chip">
+            ✨
+            <span>midnight, soft &amp; real</span>
+          </div>
+        </div>
+        <p class="subtitle">
+          Ek <strong>chhota sa</strong> saal‑ka‑pehla letter, sirf tumhare liye.
+        </p>
+
+        <div class="main-message" id="mainMessage">
+          <p class="message-line" data-full-text="Yeh naya saal tumhari zindagi me shanti, strength aur khushiyan le aaye."></p>
+          <p class="message-line" data-full-text="Main bas yeh kehna chahta hoon ke main hamesha aapke saath hoon — har situation me, har phase me."></p>
+          <p class="message-line" data-full-text="Jaise aaj tumse pyaar karta hoon, waise hi hamesha karta rahunga — simple, pure aur dil se."></p>
+        </div>
+
+        <p class="footer-text">
+          from <span>someone</span> jisko tum pehle se zyada matter karti ho.
+        </p>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE LOVE NOTES -->
+    <section class="glass-card">
+      <div class="glass-inner">
+        <h2 class="notes-section-title">11 chhoti‑chhoti love notes 💌</h2>
+        <p class="notes-hint">
+          Har envelope me ek alag feeling hai. Jo tum open karogi, woh sirf tumhare liye type hoga — dheere, araam se.
+        </p>
+
+        <div class="notes-grid">
+          <!-- 11 buttons -->
+          <button class="note-btn" data-index="0">
+            <span class="emoji">✉️</span>
+            <span class="label">Soft roshni</span>
+            <span class="index">note 01</span>
+          </button>
+          <button class="note-btn" data-index="1">
+            <span class="emoji">💌</span>
+            <span class="label">Respect &amp; pyaar</span>
+            <span class="index">note 02</span>
+          </button>
+          <button class="note-btn" data-index="2">
+            <span class="emoji">✨</span>
+            <span class="label">Comfort thought</span>
+            <span class="index">note 03</span>
+          </button>
+          <button class="note-btn" data-index="3">
+            <span class="emoji">🌙</span>
+            <span class="label">Teri muskaan</span>
+            <span class="index">note 04</span>
+          </button>
+          <button class="note-btn" data-index="4">
+            <span class="emoji">📖</span>
+            <span class="label">Real moments</span>
+            <span class="index">note 05</span>
+          </button>
+          <button class="note-btn" data-index="5">
+            <span class="emoji">💟</span>
+            <span class="label">Tu ek feeling</span>
+            <span class="index">note 06</span>
+          </button>
+          <button class="note-btn" data-index="6">
+            <span class="emoji">🤍</span>
+            <span class="label">Bina expectation</span>
+            <span class="index">note 07</span>
+          </button>
+          <button class="note-btn" data-index="7">
+            <span class="emoji">🌌</span>
+            <span class="label">Dil ki jagah</span>
+            <span class="index">note 08</span>
+          </button>
+          <button class="note-btn" data-index="8">
+            <span class="emoji">🕊️</span>
+            <span class="label">Soft future</span>
+            <span class="index">note 09</span>
+          </button>
+          <button class="note-btn" data-index="9">
+            <span class="emoji">💫</span>
+            <span class="label">Deep feeling</span>
+            <span class="index">note 10</span>
+          </button>
+          <button class="note-btn" data-index="10">
+            <span class="emoji">🎆</span>
+            <span class="label">Tera hi dil</span>
+            <span class="index">note 11</span>
+          </button>
+        </div>
+
+        <div class="note-display">
+          <p class="note-display-label">OPEN LETTER</p>
+          <div class="note-display-text">
+            <span class="note-placeholder">
+              Jo envelope tum touch karogi, ussi moment se ek naya note tumhare liye type hona shuru ho jayega.
+            </span>
+            <span class="typing-cursor" id="noteCursor" style="display:none;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script>
-    const notes = [
-`LOVE LETTER 1 🥹💗
-
-Saumya, sach bolu to,
-jab bhi apka naam screen par dikhta hai,
-andar se ek ajeeb si shanti milti hai –
-jaise din chahe kitna bhi random ho,
-par end me sab theek ho jayega,
-kyunki "tum ho".
-
-Tum sirf meri life ka part nahi ho,
-tum vo feeling ho jo life ko soft bana deti hai.`,
-
-`LOVE LETTER 2 🌸
-
-apki smile literally mera favourite aesthetic hai.
-Na filter chahiye, na edit –
-sirf tum normal hasi se bhi
-mere poore mood ka vibe change ho jata hai.
-
-Agar kabhi tumhe lage ki tum enough nahi ho,
-to bas yaad rakhna:
-mere liye tum always "more than enough" ho.`,
-
-`LOVE LETTER 3 ✨
-
-Agar kabhi future ka sochta hoon,
-to scene kuch aisa hota hai:
-normal din, normal ghar, normal moments –
-bas ek cheez special hoti hai: tum ho.
-
-Mujhe expensive cheeze nahi chahiye,
-mujhe sirf vo daily chhote-chhote moments chahiye
-jahan main tumhe dekh kar sochu:
-"haan, yehi meri jagah hai."`,
-
-`LOVE LETTER 4 🌙
-
-Late night chats,
-random jealousy,
-thode se fights,
-phir "achha theek hai, gussa mat ho" type patch-up –
-ye sab cheeze cute isliye lagti hain
-kyunki end me hum dono phir se
-ek dusre ko choose kar lete hain.
-
-Mere liye love ka matlab perfect couple nahi,
-love ka matlab hai:
-hum dono, apni saari imperfections ke saath,
-phir bhi ek dusre ke saath rehna choose karte rahna.`,
-
-`LOVE LETTER 5 💌
-
-Kabhi kabhi sochta hoon,
-agar mere dil ke andar jo feelings chalti hain
-vo direct screen par type ho sake,
-to shayad yeh page kabhi khatam hi na ho.
-
-Short version me bas itna:
-I’m proud of you,
-I’m soft for you,
-and I’m madly in love with you,
-Saumya.`,
-
-`SORRY LETTER 🥺💔
-
-Saumya, meri har galti ke liye
-genuinely, honestly sorry.
-
-Jab mera dil heavy ho jata hai,
-ya emotions control se bahar ho jate hain,
-tab main kabhi kabhi aise react kar deta hoon
-jo bilkul bhi theek nahi hota –
-especially tumhare liye.
-
-Tumhe hurt karna kabhi intention nahi hota,
-par jab tum upset hoti ho,
-mujhe lagta hai jaise main hi
-apne favourite insaan ko tod raha hoon.
-Aur ye thought hi sabse zyada dard deta hai.
-
-Please meri uss version ko maaf kar dena
-jo kabhi kabhi impulsive ho jata hai,
-aur us version ko ek chance dena
-jo seekhne, sudharne aur
-tumhare liye better banne ki poori koshish kar raha hai.
-
-Tum meri life ka sabse gentle,
-sabse precious part ho.
-Main promise nahi kar sakta ki
-kabhi bhi galti nahi hogi,
-par itna zaroor promise kar sakta hoon
-ki har galti ke baad main aur zyada
-mature, patient aur careful banne ki try karunga –
-sirf tumhare liye.
-
-I’m really, deeply sorry, Saumya.
-And I love you – more than these words, more than this page, more than you can imagine. ♾️`
-    ];
-
-    const typingTextEl = document.getElementById("typingText");
-    const cursorEl = document.getElementById("cursor");
-    const noteLabelEl = document.getElementById("noteLabel");
-    const noteMetaEl = document.getElementById("noteMeta");
-    const buttons = document.querySelectorAll(".love-btn");
-
-    let typingInterval = null;
-
-    function startTyping(text) {
-      clearInterval(typingInterval);
-      typingTextEl.textContent = "";
-      cursorEl.style.display = "inline-block";
-
-      let i = 0;
-      typingInterval = setInterval(() => {
-        if (i < text.length) {
-          typingTextEl.textContent += text.charAt(i);
-          i++;
-        } else {
-          clearInterval(typingInterval);
+    // --- floating particles (stars + hearts) ---
+    (function createParticles() {
+      const container = document.getElementById("particles");
+      const total = 28;
+      for (let i = 0; i < total; i++) {
+        const el = document.createElement("div");
+        const isHeart = Math.random() < 0.45;
+        el.className = "particle" + (isHeart ? " heart" : "");
+        const left = Math.random() * 100;
+        const delay = Math.random() * -18;
+        const duration = 16 + Math.random() * 10;
+        const size = 8 + Math.random() * 10;
+        el.style.left = left + "vw";
+        el.style.animationDuration = duration + "s";
+        el.style.animationDelay = delay + "s";
+        if (!isHeart) {
+          el.style.width = size + "px";
+          el.style.height = size + "px";
+          el.style.opacity = 0.35 + Math.random() * 0.4;
         }
-      }, 26);
+        container.appendChild(el);
+      }
+    })();
+
+    // --- typing for main New Year message (line by line) ---
+    const mainLines = document.querySelectorAll("#mainMessage .message-line");
+    const typingSpeedMain = 40;
+
+    function typeLine(el, text, index, cb) {
+      el.textContent = "";
+      let i = 0;
+      function step() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i);
+          i++;
+          setTimeout(step, typingSpeedMain);
+        } else if (typeof cb === "function") {
+          cb();
+        }
+      }
+      step();
     }
 
-    buttons.forEach(btn => {
+    function typeMainSequential(lines, idx = 0) {
+      if (idx >= lines.length) return;
+      const el = lines[idx];
+      const text = el.getAttribute("data-full-text") || "";
+      typeLine(el, text, idx, () => typeMainSequential(lines, idx + 1));
+    }
+
+    window.addEventListener("load", () => {
+      setTimeout(() => typeMainSequential(mainLines), 650);
+    });
+
+// --- notes content ---
+    const notes = [
+      "Tumhari presence meri zindagi me ek soft si roshni ki tarah hai — jo zyada dikhai nahi deti, par andheron me bhi raasta dikha deti hai. Tumhari baatein, tumhari soch, sab kuch mujhe shant karta hai.",
+      "Main tumse sirf pyaar nahi karta, main tumhari respect karta hoon. Tumhare decisions, tumhare sapne aur tumhari growth mere liye bahut important hain.",
+      "Kabhi-kabhi baatein kam hoti hain, par mere dil me tumhari jagah kabhi kam nahi hoti. Tumhara khayal aana bhi mere liye ek comfort hota hai.",
+      "Tumhari khushi meri priority hai. Agar tum muskurati ho, toh mujhe lagta hai jaise sab kuch theek hai — bina kisi wajah ke.",
+      "Main tumhare saath har moment ko perfect banane ki koshish nahi karta, bas real rehna chahta hoon — jahan pyaar ho, samajh ho aur patience ho.",
+      "Tum mere liye sirf ek person nahi ho, tum ek feeling ho — jo dheere-dheere strong hoti gayi aur kabhi kam nahi hui.",
+      "Main tumse bina kisi expectation ke pyaar karta hoon. Bas yeh chahta hoon ke jo connection aur care humare beech hai, woh bana rahe.",
+      "Tumhari importance meri zindagi me words se zyada hai. Kabhi bolta hoon, kabhi chup rehta hoon — par dil hamesha tumhara hi khayal rakhta hai.",
+      "Chahe future jo bhi ho, jo bhi pace ho — mera pyaar tumhare liye hamesha soft, genuine aur loyal rahega.",
+      "Main tumse bahut pyaar karta hoon, Saumya. Yeh pyaar time pass nahi, ek deep feeling hai jo main har din mehsoos karta hoon — bina kisi shor ke.",
+      "Tum mere dil ke bahut kareeb ho. Main tumhe khona nahi chahta, kyunki jo jagah tumne meri zindagi me banayi hai, woh koi aur kabhi nahi bhar sakta."
+    ];
+
+    const buttons = document.querySelectorAll(".note-btn");
+    const noteDisplay = document.querySelector(".note-display-text");
+    const notePlaceholder = document.querySelector(".note-placeholder");
+    const noteCursor = document.getElementById("noteCursor");
+
+    let typingTimeout = null;
+    let currentIndex = -1;
+
+    function clearTyping() {
+      if (typingTimeout) {
+        clearTimeout(typingTimeout);
+        typingTimeout = null;
+      }
+    }
+
+    function startNoteTyping(text) {
+      clearTyping();
+      noteDisplay.innerHTML = "";
+      const span = document.createElement("span");
+      noteDisplay.appendChild(span);
+      noteDisplay.appendChild(noteCursor);
+      noteCursor.style.display = "inline-block";
+      const chars = text.split("");
+      let i = 0;
+
+      function step() {
+        if (i <= chars.length) {
+          span.textContent = chars.slice(0, i).join("");
+          i++;
+          typingTimeout = setTimeout(step, 26);
+        } else {
+          noteCursor.style.display = "inline-block";
+        }
+      }
+      step();
+    }
+
+    buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const idx = parseInt(btn.getAttribute("data-index"), 10);
+        if (idx === currentIndex) return;
+        currentIndex = idx;
 
-        if (idx === 5) {
-          noteLabelEl.textContent = "Sorry letter · from a very guilty heart";
-          noteMetaEl.textContent = "read this slowly, and please… thoda sa maaf bhi kar dena";
-        } else {
-          noteLabelEl.textContent = "Love letter " + (idx + 1) + " · just for you";
-          noteMetaEl.textContent = "tap different buttons to open new letters";
-        }
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
 
-        if ("vibrate" in navigator) {
-          navigator.vibrate(80);
-        }
+        if (notePlaceholder) notePlaceholder.remove();
 
-        startTyping(notes[idx]);
+        const text = notes[idx] || "";
+        startNoteTyping(text);
+        triggerFireworks();
       });
     });
 
-    window.addEventListener("load", () => {
-      noteLabelEl.textContent = "Love letter 1 · just for you";
-      startTyping(notes[0]);
-    });
+    // --- soft fireworks when a note opens ---
+    const fireworksLayer = document.getElementById("fireworks");
+
+    function createSingleFirework() {
+      const fw = document.createElement("div");
+      fw.className = "firework";
+      const x = 20 + Math.random() * 60; // between 20 and 80 vw
+      const y = 15 + Math.random() * 40; // between 15 and 55 vh
+      fw.style.left = x + "vw";
+      fw.style.top = y + "vh";
+
+      const hue = 270 + Math.random() * 40; // soft purples/pinks
+      fw.style.background = `radial-gradient(circle, hsl(${hue},90%,85%) 0, transparent 70%)`;
+      fw.style.boxShadow = `0 0 14px hsla(${hue},100%,90%,0.95)`;
+
+      fireworksLayer.appendChild(fw);
+      setTimeout(() => fw.remove(), 1700);
+
+      const trail = document.createElement("div");
+      trail.className = "firework trail";
+      trail.style.left = x + "vw";
+      trail.style.top = y + 18 + "vh";
+      fireworksLayer.appendChild(trail);
+      setTimeout(() => trail.remove(), 1000);
+    }
+
+    function triggerFireworks() {
+      const bursts = 3 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < bursts; i++) {
+        setTimeout(createSingleFirework, i * 180);
+      }
+    }
   </script>
 </body>
 </html>
